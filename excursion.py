@@ -1,6 +1,9 @@
 """
 ---------------------------------------------------
-Responsible team member(s):
+Team Member(s) contribution:
+
+- William: validateMonth(), traveller.has_numerical_characters(),
+error handling for venue name and date
 -
 -
 ---------------------------------------------------
@@ -24,12 +27,16 @@ def obtainDetails(excursions):
         valid_time_setting = False
         valid_date_day = False
         valid_date_month = False
+
+        # Get Venue Name
         while valid_venue == False:
           venue = input("Name of the venue: ")
           if traveller.has_special_characters(venue):
             print("Venue name cannot contain special characters.")
           else:
             valid_venue = True
+
+        # Get Venue Date
         while valid_date_day == False:
           date_day = input("Excursion date (1-31): ")
           if traveller.has_numerical_characters(date_day) == False:
@@ -38,6 +45,7 @@ def obtainDetails(excursions):
             print("Not a valid date.")
           else:
             valid_date_day = True
+
         while valid_date_month == False:
           date_month = input("Month of the excursion (abbreviated): ")
           if validateMonth(date_month):
@@ -46,6 +54,7 @@ def obtainDetails(excursions):
           else:
             print("Not a valid month.")
 
+        # Get Venue Time
         while valid_time_hour == False:
           time_hour = input("Arrival Time (in hours): ")
           if traveller.has_numerical_characters(time_hour) == False:
@@ -54,6 +63,7 @@ def obtainDetails(excursions):
             print("Not a valid hour.")
           else:
             valid_time_hour = True
+
         while valid_time_setting == False:
           available_time_settings = ['am', 'pm']
           time_setting = input("AM or PM: ")
