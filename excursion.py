@@ -62,7 +62,7 @@ def obtainDetails(excursions):
             time = time_hour + str(time_setting)
           elif time_setting.lower() == available_time_settings[1]:
             valid_time_setting = True
-            time = time_hour + str(time_setting)
+            time = time_hour + ' ' + str(time_setting)
           else:
             print("Not a valid time setting.")
 
@@ -93,7 +93,7 @@ def printDetails(excursions):
         print("Name of Venue: ", excursion["Venue"])
         print("Arrival Date: ", excursion["Date"])
         print("Arrival Time: ", excursion["Time"])
-        print("Venue Cost: ", excursion["Cost"])
+        print("Venue Cost: £", excursion["Cost"])
         print("------------------------------------------")
 
 
