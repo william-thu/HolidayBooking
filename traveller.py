@@ -103,7 +103,7 @@ def obtainDetails(travellers):
 
         travellers.append(traveller)
         while True:
-            response = input("Do you want to enter another traveller information? (yes / no)").lower()
+            response = input("Do you want to enter another traveller information? (yes / no): ").lower()
             if response == "yes":
                 break
             elif response == "no":
