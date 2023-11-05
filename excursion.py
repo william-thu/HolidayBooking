@@ -1,25 +1,55 @@
+"""
+---------------------------------------------------
+Responsible team member(s):
+-
+-
+---------------------------------------------------
+"""
+
+import traveller
+
 def obtainDetails(excursions):
+    print("-------------- You are now entering details for your excursion! --------------")
     more_excursions = "yes"
     while more_excursions == "yes":
-        venue = input("Name of the venue: ")
+        valid_venue = False
+        while valid_venue == False:
+          venue = input("Name of the venue: ")
+          if traveller.has_special_characters(venue):
+            print("Venue name cannot contain special characters.")
+          else:
+            valid_venue = True
         date = input("Date of the excursion: ")
         time = input("Time of the excursion: ")
-        cost = input("Cost of the excursion: ")
-        excursion = {}
-        excursion["Venue"] = venue
-        excursion["Date"] = date
-        excursion["Time"] = time
-        excursion["Cost"] = cost
+        cost = float("Cost of the excursion: ")
+
+        excursion = {
+          "Venue": venue,
+          "Date": date,
+          "Time": time,
+          "Cost": cost
+        }
+
         excursions.append(excursion)
-        more_excursions = input("Do you want to add another excursion? yes or no: ")
+        while True:
+            response = input("Do you want to enter another excursion? (yes / no): ").lower()
+            if response == "yes":
+                break
+            elif response == "no":
+                more_excursions = False
+                break
+            else:
+                print("Invalid response. Please enter 'yes' or 'no'.")
 
 
 def printDetails(excursions):
+    print("--------------- Excursion Details ---------------")
     for excursion in excursions:
-        print(excursion["Venue"])
-        print(excursion["Date"])
-        print(excursion["Time"])
-        print(excursion["Cost"])
+        print("Name of Venue: ", excursion["Venue"])
+        print("Arrival Date: ", excursion["Date"])
+        print("Arrival Time: ", excursion["Time"])
+        print("Venue Cost: ", excursion["Cost"])
+        print("------------------------------------------")
 
 
 def getTotalCost(excursions):
