@@ -8,20 +8,65 @@ Responsible team member(s):
 
 import traveller
 
+def validateMonth(month):
+  valid_months = ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC']
+  if month.upper() in valid_months:
+    return True
+  else:
+    return False
+
 def obtainDetails(excursions):
     print("-------------- You are now entering details for your excursion! --------------")
     more_excursions = "yes"
     while more_excursions == "yes":
         valid_venue = False
+        valid_time_hour = False
+        valid_time_setting = False
+        valid_date_day = False
+        valid_date_month = False
         while valid_venue == False:
           venue = input("Name of the venue: ")
           if traveller.has_special_characters(venue):
             print("Venue name cannot contain special characters.")
           else:
             valid_venue = True
-        date = input("Date of the excursion: ")
-        time = input("Time of the excursion: ")
-        cost = float("Cost of the excursion: ")
+        while valid_date_day == False:
+          date_day = input("Excursion date (1-31): ")
+          if traveller.has_numerical_characters(date_day) == False:
+            print("Day of the date must be a numerical value.")
+          elif int(date_day) < 1 or int(date_day) > 31:
+            print("Not a valid date.")
+          else:
+            valid_date_day = True
+        while valid_date_month == False:
+          date_month = input("Month of the excursion (abbreviated): ")
+          if validateMonth(date_month):
+            valid_date_month = True
+            date = date_day + ' ' + date_month.upper()
+          else:
+            print("Not a valid month.")
+
+        while valid_time_hour == False:
+          time_hour = input("Arrival Time (in hours): ")
+          if traveller.has_numerical_characters(time_hour) == False:
+            print("Time of the venue must be a number.")
+          elif len(time_hour) >= 3 or int(time_hour) >= 24:
+            print("Not a valid hour.")
+          else:
+            valid_time_hour = True
+        while valid_time_setting == False:
+          available_time_settings = ['am', 'pm']
+          time_setting = input("AM or PM: ")
+          if time_setting.lower() == available_time_settings[0]:
+            valid_time_setting = True
+            time = time_hour + str(time_setting)
+          elif time_setting.lower() == available_time_settings[1]:
+            valid_time_setting = True
+            time = time_hour + str(time_setting)
+          else:
+            print("Not a valid time setting.")
+
+        cost = input("Cost of the excursion: ")
 
         excursion = {
           "Venue": venue,
