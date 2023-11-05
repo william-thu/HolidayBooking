@@ -59,7 +59,7 @@ def obtainDetails(excursions):
           time_hour = input("Arrival Time (in hours): ")
           if traveller.has_numerical_characters(time_hour) == False:
             print("Time of the venue must be a number.")
-          elif len(time_hour) >= 3 or int(time_hour) >= 24:
+          elif len(time_hour) >= 3 or int(time_hour) >= 25:
             print("Not a valid hour.")
           else:
             valid_time_hour = True
