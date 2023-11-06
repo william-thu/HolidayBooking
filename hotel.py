@@ -6,7 +6,7 @@
 
 def checkErrors(input):
     if len(input) == 0 or input.isdigit() or len(input) < 4:
-        print("Error! Enter correct details")
+        print("Error! Enter the correct details")
         print("Your input was either empty, a number was provided or it was less than 4 letters")
         return False
     else:
@@ -16,7 +16,7 @@ def checkErrors(input):
 
 def obtainDetails(hotels):
     isHotel = True
-    star_rating = [1, 2, 3, 4, 5]
+    star_rating = ["1", "2", "3", "4", "5"]
     board_options = ["full", "half", "bed and breakfast"]
     print("The next step is to book your hotels")
 
@@ -43,7 +43,7 @@ def obtainDetails(hotels):
             building_number_input = input("Building number: ")
             if len(building_number_input) == 0 or building_number_input.isdigit() == False or len(building_number_input) > 4:
                 print("Error! Enter correct building number")
-                print("Must be a number.")
+                print("Must be a number")
             else:
                 building_valid = True
                 full_address = building_number_input + " " + street_input + " " + city_input
@@ -52,10 +52,11 @@ def obtainDetails(hotels):
                 star_valid = False
                 while star_valid == False:
                     star_input = input("Please select a star rating (1 to 5): ")
-                    if int(star_input) not in star_rating:
+                    if star_input not in star_rating:
                         print("Error! Select from 1 to 5")
                     else:
                         star_valid = True
+
                         board_valid = False
                         while board_valid == False:
                             board_input = input("Please type one of the board options -> full, half, bed and breakfast: ")
@@ -64,17 +65,28 @@ def obtainDetails(hotels):
                             else:
                                 board_valid = True
 
-                        cost_input = input("Enter the cost (in pounds): ")
+                                cost_valid = False
+                                while cost_valid == False:
+                                    cost_input = input("Enter the cost (in pounds): ")
+                                    if cost_input.isdigit() == False:
+                                        print("Error! Must be a number")
+                                    else:
+                                        cost_valid = True
 
-                        hotel_details = {"Name": name_input,"Address": full_address,"Rating" : star_input,
+                                hotel_details = {"Name": name_input,"Address": full_address,"Rating" : star_input,
                                          "Board" : board_input, "Cost": cost_input }
 
-                        hotels.append(hotel_details)
-                        other_hotel_input = input("Do you want to add another hotel? ")
-                        if other_hotel_input.capitalize() == "Yes":
-                            continue
-                        else:
-                            isHotel = False
+                                hotels.append(hotel_details)
+                                other_hotel_input = input("Do you want to add another hotel? ")
+
+                                if other_hotel_input.capitalize() == "Yes":
+                                    continue
+                                elif other_hotel_input.capitalize() == "No":
+                                    print("Thank you for filling information about hotels")
+                                    isHotel = False
+                                else:
+                                    print("Error! Invalid input, type 'yes' or 'no'")
+                                    isHotel = False
 
 
 
@@ -91,7 +103,7 @@ def printDetails(hotels):
                 print("Board: " + hotel["Board"])
                 print("Cost: " + hotel["Cost"])
                 print()
-        elif  "1" <= question_input <= "5":
+        elif "1" <= question_input <= "5":
             carry_on = True
             i = int(question_input)
             if 0<=i<=5:
@@ -111,3 +123,5 @@ def getTotalCost(hotels):
     for hotel in hotels:
         total_cost = total_cost + float(hotel["Cost"])
     return total_cost
+
+
