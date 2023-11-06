@@ -3,7 +3,7 @@
 Team Member(s) contribution:
 
 - William: validateMonth(), traveller.has_numerical_characters(),
-error handling for venue name and date
+error handling for venue name, date, time and cost
 - Aigerim : excursions limit
 -
 ---------------------------------------------------
@@ -27,6 +27,7 @@ def obtainDetails(excursions):
         valid_time_setting = False
         valid_date_day = False
         valid_date_month = False
+        valid_cost = False
 
         # Get Venue Name
         while valid_venue == False:
@@ -76,7 +77,13 @@ def obtainDetails(excursions):
           else:
             print("Not a valid time setting.")
 
-        cost = input("Cost of the excursion: ")
+        while valid_cost == False:
+          cost_input = input("Cost of the excursion: ")
+          if traveller.has_numerical_characters(cost_input) == False:
+            print("Cost must be a float value.")
+          else:
+            cost = float(cost_input)
+            valid_cost = True
 
         excursion = {
           "Venue": venue,

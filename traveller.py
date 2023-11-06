@@ -60,6 +60,8 @@ def obtainDetails(travellers):
         valid_dob = False
         valid_phone = False
         valid_passport = False
+
+        # Obtain traveller's name
         while valid_name == False:
             name = input("Enter traveller's name: ")
             if has_numerical_characters(name):
@@ -69,6 +71,7 @@ def obtainDetails(travellers):
             else:
                 valid_name = True
 
+        # Obtain traveller's DoB
         while valid_dob == False:
             dob = input("Enter Date of Birth (dd/mm/yyyy) - Month must be 3-letters abbreviated : ")
             if not validate_dob(dob):
@@ -76,6 +79,7 @@ def obtainDetails(travellers):
             else:
                 valid_dob = True
 
+        # Obtain Traveller's Phone Number
         while valid_phone == False:
             phoneNo = input("Enter Phone Number: ")
             if has_special_characters(phoneNo):
@@ -87,6 +91,7 @@ def obtainDetails(travellers):
             else:
                 valid_phone = True
 
+        # Obtain Traveller's Passport
         while valid_passport == False:
             passportNo = input("Enter passport number: ")
             if has_special_characters(passportNo):
