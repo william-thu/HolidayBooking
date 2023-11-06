@@ -4,7 +4,7 @@ Team Member(s) contribution:
 
 - William: validateMonth(), traveller.has_numerical_characters(),
 error handling for venue name and date
--
+- Aigerim : excursions limit
 -
 ---------------------------------------------------
 """
@@ -86,9 +86,14 @@ def obtainDetails(excursions):
         }
 
         excursions.append(excursion)
+        excursions_limit = 10
         while True:
             response = input("Do you want to enter another excursion? (yes / no): ").lower()
-            if response == "yes":
+            if response == "yes" and len(excursions) < excursions_limit:
+                break
+            elif response == "yes" and len(excursions) >= excursions_limit:
+                print("Oops! You've reached the limit")
+                more_excursions = False
                 break
             elif response == "no":
                 more_excursions = False
